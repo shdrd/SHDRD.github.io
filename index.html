@@ -1,12 +1,344 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <title>heart的学术主页</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>heart | 数据金融 · 量化研究</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #fafafa;
+            color: #1e1e2f;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 头部区域 */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .name h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .name .title {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-top: 0.25rem;
+        }
+
+        .badge {
+            background: #eef2ff;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+
+        /* 联系信息 */
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .contact-info a {
+            color: #2a5298;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* 章节标题 */
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            border-left: 5px solid #2a5298;
+            padding-left: 1rem;
+            color: #1e1e2f;
+        }
+
+        /* 研究方向标签 */
+        .research-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: #eef2ff;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #1e3c72;
+        }
+
+        /* 技术栈网格 */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-item {
+            background: #f1f5f9;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #0f172a;
+        }
+
+        /* 项目卡片 */
+        .project {
+            margin-bottom: 1.8rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .project:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .project h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project h3 a {
+            color: #1e3c72;
+            text-decoration: none;
+        }
+
+        .project h3 a:hover {
+            text-decoration: underline;
+        }
+
+        .project-desc {
+            color: #334155;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .tech-badge {
+            background: #e2e8f0;
+            padding: 0.2rem 0.7rem;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #1e293b;
+        }
+
+        /* GitHub 统计区 */
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stats img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        /* 页脚 */
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .card {
+                padding: 1.5rem;
+            }
+            .name h1 {
+                font-size: 1.8rem;
+            }
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>你好，我是腐心</h1>
-    <p>这里是heart的个人主页。</p>
-    <p>我正在学习Python、SQL中，正在深入学习量化分析 金融时间序列分析与预测 风险管理与衍生品定价</p>
+    <div class="container">
+        <!-- 个人信息卡片 -->
+        <div class="card">
+            <div class="header">
+                <div class="name">
+                    <h1>heart</h1>
+                    <div class="title">数据金融 · 量化研究 · 风险管理</div>
+                </div>
+                <div class="badge">
+                    📍 上海 · 中国
+                </div>
+            </div>
+            <p style="margin: 1rem 0; font-size: 1.05rem; color: #2d3748;">
+                热爱将<strong>数据科学</strong>与<strong>金融市场</strong>相结合，探索数据背后的商业洞察。
+                擅长用编程与统计方法解决金融中的实际问题，持续学习量化投资与机器学习在金融领域的应用。
+            </p>
+            <div class="contact-info">
+                <span>📧 shdrd05@163.com</span>
+                <span>🐙 <a href="https://github.com/SHDRD" target="_blank">GitHub / SHDRD</a></span>
+                <span>🔗 <a href="#">LinkedIn</a></span>
+                <span>📚 <a href="#">学术主页</a></span>
+            </div>
+        </div>
+
+        <!-- 研究方向 -->
+        <div class="card">
+            <div class="section-title">📊 研究方向</div>
+            <div class="research-tags">
+                <span class="tag">量化投资策略</span>
+                <span class="tag">金融时间序列</span>
+                <span class="tag">风险管理</span>
+                <span class="tag">机器学习信用评分</span>
+                <span class="tag">因子模型</span>
+                <span class="tag">因果推断</span>
+            </div>
+        </div>
+
+        <!-- 技术栈 -->
+        <div class="card">
+            <div class="section-title">🛠 技术栈</div>
+            <div class="skills-grid">
+                <span class="skill-item">Python / Pandas / NumPy</span>
+                <span class="skill-item">SQL / MySQL</span>
+                <span class="skill-item">R / MATLAB</span>
+                <span class="skill-item">Scikit-learn / XGBoost</span>
+                <span class="skill-item">Backtrader / Zipline</span>
+                <span class="skill-item">Tableau / Power BI</span>
+                <span class="skill-item">Git / Jupyter</span>
+                <span class="skill-item">Wind / Tushare</span>
+            </div>
+        </div>
+
+        <!-- 代表性项目 -->
+        <div class="card">
+            <div class="section-title">📁 代表性项目</div>
+            
+            <div class="project">
+                <h3><a href="#">📈 基于 LSTM 的股票价格预测模型</a></h3>
+                <div class="project-desc">
+                    使用 yfinance 获取历史数据，构建 LSTM 网络进行收盘价预测，并可视化预测结果与真实走势对比。
+                    项目包含数据预处理、模型调参和回测评估。
+                </div>
+                <div class="project-tech">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">TensorFlow</span>
+                    <span class="tech-badge">yfinance</span>
+                    <span class="tech-badge">Matplotlib</span>
+                </div>
+            </div>
+
+            <div class="project">
+                <h3><a href="#">📉 A股多因子选股策略回测</a></h3>
+                <div class="project-desc">
+                    选取市值、动量、波动率等因子，使用 Backtrader 实现回测框架，分析策略收益、夏普比率与最大回撤，
+                    并对比不同因子组合的表现。
+                </div>
+                <div class="project-tech">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Backtrader</span>
+                    <span class="tech-badge">Pandas</span>
+                    <span class="tech-badge">Tushare</span>
+                </div>
+            </div>
+
+            <div class="project">
+                <h3><a href="#">💳 信用卡违约风险分析</a></h3>
+                <div class="project-desc">
+                    基于 Kaggle 公开数据集进行探索性数据分析与特征工程，对比逻辑回归、随机森林与 XGBoost 模型，
+                    评估 AUC、召回率等指标，给出可解释的风险评估方案。
+                </div>
+                <div class="project-tech">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Scikit-learn</span>
+                    <span class="tech-badge">XGBoost</span>
+                    <span class="tech-badge">SHAP</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- GitHub 统计卡片 -->
+        <div class="card">
+            <div class="section-title">📈 GitHub 动态</div>
+            <div class="stats">
+                <img src="https://github-readme-stats.vercel.app/api?username=SHDRD&show_icons=true&theme=default&hide_border=true" alt="GitHub Stats">
+                <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=SHDRD&layout=compact&hide_border=true" alt="Top Languages">
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            © 2025 杨光 · 持续更新中 | 基于 GitHub Pages 构建
+        </div>
+    </div>
 </body>
 </html>
